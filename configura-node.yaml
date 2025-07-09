@@ -1,0 +1,30 @@
+---
+- hosts: vm2
+  become: yes
+  tasks:
+    - name: Instalar dependências do sistema
+      apt:
+        name:
+          - git
+          - curl
+        state: present
+        update_cache: yes
+
+    - name: Clonar o repositório
+      git:
+        repo: 'https://github.com/VicRyan007/Atividade-1-de-gest-o-de-configura-ao'
+        dest: /home/vagrant/app
+        clone: yes
+        update: yes
+
+    - name: Instalar Node.js e npm
+      apt:
+        name:
+          - nodejs
+          - npm
+        state: present
+        update_cache: yes
+
+    - name: Instalar dependências do projeto
+      npm:
+        path: /home/vagrant/app 
