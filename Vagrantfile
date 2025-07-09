@@ -8,6 +8,13 @@ Vagrant.configure("2") do |config|
       vb.memory = 1024
     end
     vm1.vm.boot_timeout = 600
+    # Sincronizar pasta do projeto
+    vm1.vm.synced_folder ".", "/vagrant"
+    # Instalar Ansible na VM1
+    vm1.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get update
+      sudo apt-get install -y ansible
+    SHELL
   end
 
   # VM2
@@ -20,14 +27,6 @@ Vagrant.configure("2") do |config|
     end
     vm2.vm.boot_timeout = 600
     # Sincronizar pasta do projeto
-    vm2.vm.synced_folder ".", "/vagrant_data"
-    # Provisionamento para instalar dependências e rodar app
-    vm2.vm.provision "shell", inline: <<-SHELL
-      curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-      sudo apt-get install -y nodejs
-      cd /vagrant_data
-      npm install
-      nohup node app.js &
-    SHELL
+    vm2.vm.synced_folder ".", "/vagrant"
   end
 end 

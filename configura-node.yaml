@@ -12,7 +12,7 @@
 
     - name: Clonar o repositório
       git:
-        repo: 'https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git'
+        repo: 'https://github.com/VicRyan007/Atividade-1-de-gest-o-de-configura-ao'
         dest: /home/vagrant/app
         clone: yes
         update: yes
