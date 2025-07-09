@@ -4,16 +4,17 @@ on:
   push:
     branches:
       - main
+      - cadastro_POST
 
 jobs:
   run-api:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Clonar repositório e mudar para a branch atividade_frequente
+    - name: Clonar repositório e mudar para a branch main
       uses: actions/checkout@v3
       with:
-        ref: atividade_frequente
+        ref: main
 
     - name: Instalar Node.js
       uses: actions/setup-node@v3
