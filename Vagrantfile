@@ -7,6 +7,7 @@ Vagrant.configure("2") do |config|
     vm1.vm.provider "virtualbox" do |vb|
       vb.memory = 1024
     end
+    vm1.vm.boot_timeout = 600
   end
 
   # VM2
@@ -15,8 +16,9 @@ Vagrant.configure("2") do |config|
     vm2.vm.hostname = "vm2"
     vm2.vm.network "private_network", ip: "192.168.56.11"
     vm2.vm.provider "virtualbox" do |vb|
-      vb.memory = 2048 # Valor recomendado para Node.js
+      vb.memory = 1024 # Reduzido para evitar sobrecarga
     end
+    vm2.vm.boot_timeout = 600
     # Sincronizar pasta do projeto
     vm2.vm.synced_folder ".", "/vagrant_data"
     # Provisionamento para instalar dependências e rodar app
